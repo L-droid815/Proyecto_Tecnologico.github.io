@@ -1,0 +1,230 @@
+/* ==========================================================================
+   1. ESTILOS GENERALES Y RESETS
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f4f7f6;
+  color: #333;
+  min-height: 100vh;
+}
+
+.oculto {
+  display: none !important;
+}
+
+/* ==========================================================================
+   2. ESTILOS DE LA PANTALLA DE LOGIN
+   ========================================================================== */
+.contenedor-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+}
+
+.tarjeta-login {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: 400px;
+}
+
+.tarjeta-login h2 {
+  margin-bottom: 8px;
+  color: #1e3c72;
+  text-align: center;
+}
+
+.tarjeta-login .subtitulo {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.grupo-input {
+  margin-bottom: 16px;
+}
+
+.grupo-input label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.grupo-input input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.btn-login {
+  width: 100%;
+  padding: 12px;
+  background-color: #1e3c72;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-login:hover {
+  background-color: #2a5298;
+}
+
+.mensaje-error {
+  color: #e74c3c;
+  font-size: 13px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+/* ==========================================================================
+   3. ESTILOS DEL PANEL PRINCIPAL
+   ========================================================================== */
+.barra-superior {
+  background-color: #1e3c72;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-logout {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tarjeta-sistema {
+  background: white;
+  margin: 20px 30px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.grid-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.btn-agregar-estudiante {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.encabezado-tabla {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.btn-imprimir {
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tabla-asistencia {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-asistencia th, .tabla-asistencia td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.tabla-asistencia th {
+  background-color: #f2f2f2;
+}
+
+.btn-eliminar {
+  background-color: #c0392b;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   4. CONFIGURACIÓN DE IMPRESIÓN (MULTIPLATAFORMA / OFFICE / LINUX)
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 1cm;
+  }
+
+  /* Ocultar elementos de UI */
+  .barra-superior,
+  #pantalla-registro,
+  .btn-imprimir,
+  .col-acciones,
+  .btn-eliminar {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .tarjeta-sistema {
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .tabla-asistencia {
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+
+  .tabla-asistencia th, 
+  .tabla-asistencia td {
+    border: 1px solid #000000 !important;
+    padding: 6px !important;
+    font-size: 10pt !important;
+    color: #000000 !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
