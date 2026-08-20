@@ -1,8 +1,7 @@
 // ==========================================================================
 // BASE DE DATOS LOCAL Y ESTADO DE APLICACIÓN
 // ==========================================================================
-let estudiantes = [
-
+const estudiantesIniciales = [
   { id: 1, cedula: "V-34694229", nombre: "Maryoris Sarahi Portilla Soomai", seccion: "Primer año seccion A" },
 
   { id: 2, cedula: "V-3482822", nombre: "Zahir Uziel Leon Salazar", seccion: "Primer año seccion A" },
@@ -12,43 +11,41 @@ let estudiantes = [
   {id: 4, cedula: "V-34855119", nombre: "Maria Valentina Romero Herrera", seccion: "Primer año seccion A"},
 
   {id: 5, cedula: "V-34894853", nombre: "Abraham Josue Call Marcano", seccion: "Primer año seccion A"},
-
+  
   {id: 6, cedula: "V-35009788", nombre: "Dhilan Josue Calderon Boyce", seccion: "Primer año seccion A"},
-
+ 
   {id: 7, cedula: "V-35039769", nombre: "Maria Fernanda Cedeño Cortez", seccion: "Primer año seccion A"},
 
   {id: 8, cedula: "V-35093006", nombre: "Astins Gabriell Muñoz Morales", seccion: "Primer año seccion A"},
-  
+
   {id: 9, cedula: "V-35131815", nombre: "Keyler Daniel Wells Palmares", seccion: "Primer año seccion A"},
 
   {id: 10, cedula: "V-36230054", nombre: "Jascyel Waleska Bettermin Bolwine", seccion: "Primer año seccion A"},
-
+  
   {id: 11, cedula: "V-36237587", nombre: "Anthonella Juliett Ortega Bolwine", seccion: "Primer año seccion A"},
-
+  
   {id: 12, cedula: "V-36298646", nombre: "Kheilyn Alejadra Marquez Carreño", seccion: "Primer año seccion A"},
-
+  
   {id: 13, cedula: "V-36394939", nombre: "Adrian David Gutierrez Baeza", seccion: "Primer año seccion A"},
-
+  
   {id: 14, cedula: "V-36396897", nombre: "Geimilys Karisbel Gascon Polo", seccion: "Primer año seccion A"},
-
+  
   {id: 15, cedula: "V-36765014", nombre: "Yeikert Alejandro Brito Valderrey", seccion: "Primer año seccion A"},
-
+  
   {id: 16, cedula: "V-36765646", nombre: "Aletza Jiovanna Kochmansky Contreras", seccion: "Primer año seccion A"},
 
   {id: 17, cedula: "V-36849555", nombre: "Mabel Paola Ramonys Jimenez", seccion: "Primer año seccion A"},
-
+  
   {id: 18, cedula: "V-36940752", nombre: "Jorgelis Valentina Rodriguez Palomo", seccion: "Primer año seccion A"},
 
   {id: 19, cedula: "V-37044134", nombre: "Marianela Jose Davalillo Leon", seccion: "Primer año seccion A"},
-
+  
   {id: 20, cedula: "V-37341117", nombre: "Eudismarys Esther Mata Palomares", seccion: "Primer año seccion A"},
-
+  
   {id: 21, cedula: "V-37460645", nombre: "Aroon Sebastian Guevara Ramirez", seccion: "Primer año seccion A"},
-
-
-
+  
   {id: 22, cedula: "V-33866403", nombre: "Nicolas Alberto Salazar Rondon", seccion: "Primer año seccion B"},
-
+  
   {id: 23, cedula: "V-34794396", nombre: "Diosmar Alexander Arteaga Marcano", seccion: "Primer año seccion B"},
 
   {id: 24, cedula: "V-35020454", nombre: "Javierlys Josefina Salazar Mayo", seccion: "Primer año seccion B"},
@@ -72,7 +69,7 @@ let estudiantes = [
   {id: 33, cedula: "V-36421276", nombre: "Miranda Edecia Colina Moya", seccion: "Primer año seccion B"},
 
   {id: 34, cedula: "V-36432829", nombre: "Andreilismar Valentina Tocore Tocore", seccion: "Primer año seccion B"},
-
+  
   {id: 35, cedula: "V-36907540", nombre: "Yarley Carolina Zabala Diaz", seccion: "Primer año seccion B"},
 
   {id: 36, cedula: "V-36959322", nombre: "Mauricio Javier Dominguez Rojas", seccion: "Primer año seccion B"},
@@ -88,7 +85,7 @@ let estudiantes = [
   {id: 41, cedula: "V-11325512624", nombre: "Angel Adrian Dimas Luces", seccion: "Primer año seccion B"},
 
   {id: 42, cedula: "V-11425125753", nombre: "Karlis Alejandra Ferman Rosquel", seccion: "Primer año seccion B"},
-
+  
   {id: 43, cedula: "V-34780516", nombre: "Maria Fernanda Rodriguez Moreno", seccion: "Primer año seccion C"},
 
   {id: 44, cedula: "V-34780553", nombre: "Jannelys Gabriela Lopez Perez", seccion: "Primer año seccion C"},
@@ -104,7 +101,7 @@ let estudiantes = [
   {id: 49, cedula: "V-11319858390", nombre: "Fabian Alejandro Frutille Baquero", seccion: "Primer año seccion C"},
 
   {id: 50, cedula: "V-11321385005", nombre: "Samira Sthefania Olivares Gurra", seccion: "Primer año seccion C"},
-
+  
   {id: 51, cedula: "V-34154240", nombre: "Jasep Alcangel Idrogo Moreno", seccion: "Segundo año seccion A"},
 
   {id: 52, cedula: "V-34285119", nombre: "Jhonny Alejandro Rendayyo Montenegro", seccion: "Segundo año seccion A"},
@@ -126,11 +123,11 @@ let estudiantes = [
   {id: 60, cedula: "V-34484470", nombre: "Randy Josue Jimenez Reyna", seccion: "Segundo año seccion A"},
 
   {id: 61, cedula: "V-34544429", nombre: "Dianlet Gabriela Rondon Wells", seccion: "Segundo año seccion A"},
-
+ 
   {id: 62, cedula: "V-34553656", nombre: "Robert Daniels Zambrano Baeza", seccion: "Segundo año seccion A"},
-
+ 
   {id: 63, cedula: "V-34692249", nombre: "Efranluis Jesus Silvia Guzman", seccion: "Segundo año seccion A"},
-
+ 
   {id: 64, cedula: "V-34710852", nombre: "Belinda Johanna Verde Rodriguez", seccion: "Segundo año seccion A"},
 
   {id: 65, cedula: "V-34721159", nombre: "Jesus Santiago Velasquez Marcano", seccion: "Segundo año seccion A"},
@@ -266,9 +263,16 @@ let estudiantes = [
   {id: 130, cedula: "V-11116215202", nombre: "Litjania De Los Angeles Gonzalez Sarabia", seccion: "Tercer año seccion U"},
 
   {id: 131, cedula: "V-11125672992", nombre: "Jexulys Ariannys Fernandez Perez", seccion: "Tercer año seccion U"},
-
-  {id: 132, cedula: "V-11221082784", nombre: "Sebastian Jose Moreno Mendoza", seccion: "Tercer año seccion U"},
+  
+  {id: 132, cedula: "V-11221082784", nombre: "Sebastian Jose Moreno Mendoza", seccion: "Tercer año seccion U"}
 ];
+
+// Cargar desde localStorage o usar arreglo base si no hay datos guardados
+let estudiantes = JSON.parse(localStorage.getItem('registroEstudiantes')) || estudiantesIniciales;
+
+function guardarDatos() {
+  localStorage.setItem('registroEstudiantes', JSON.stringify(estudiantes));
+}
 
 // Credenciales por defecto
 const USUARIO_CORRECTO = "admin";
@@ -327,6 +331,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     estudiantes.push(nuevoEstudiante);
+    guardarDatos(); // Guardar cambios en el navegador
     registroForm.reset();
     renderizarTabla();
   });
@@ -368,5 +373,6 @@ function renderizarTabla() {
 
 function eliminarEstudiante(id) {
   estudiantes = estudiantes.filter(est => est.id !== id);
+  guardarDatos(); // Guardar cambios en el navegador
   renderizarTabla();
 }
