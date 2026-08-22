@@ -157,6 +157,11 @@ body {
   font-weight: bold;
 }
 
+.contenedor-tabla {
+  width: 100%;
+  overflow-x: auto;
+}
+
 .tabla-asistencia {
   width: 100%;
   border-collapse: collapse;
@@ -164,12 +169,14 @@ body {
 
 .tabla-asistencia th, .tabla-asistencia td {
   border: 1px solid #ddd;
-  padding: 10px;
+  padding: 8px 4px;
   text-align: center;
+  font-size: 13px;
 }
 
 .tabla-asistencia th {
   background-color: #f2f2f2;
+  white-space: nowrap;
 }
 
 .btn-eliminar {
@@ -187,7 +194,7 @@ body {
 @media print {
   @page {
     size: A4 landscape;
-    margin: 1cm;
+    margin: 0.5cm;
   }
 
   /* Ocultar elementos de UI */
@@ -218,8 +225,8 @@ body {
   .tabla-asistencia th, 
   .tabla-asistencia td {
     border: 1px solid #000000 !important;
-    padding: 6px !important;
-    font-size: 10pt !important;
+    padding: 3px !important;
+    font-size: 7pt !important;
     color: #000000 !important;
   }
 
