@@ -223,7 +223,7 @@ function renderizarTabla() {
 
     // Generar checkboxes para las 30 semanas
     let semanasHTML = "";
-    for (let i = 1; i <= 30; i++) {
+    for (let i = 1; i <= 12; i++) {
       semanasHTML += `<td><input type="checkbox"></td>`;
     }
 
