@@ -221,7 +221,7 @@ function renderizarTabla() {
   estudiantes.forEach((est, index) => {
     const tr = document.createElement("tr");
 
-    // Generar checkboxes para las 30 semanas
+    // Generar checkboxes para las 12 semanas
     let semanasHTML = "";
     for (let i = 1; i <= 12; i++) {
       semanasHTML += `<td><input type="checkbox"></td>`;
