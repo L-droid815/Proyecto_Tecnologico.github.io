@@ -113,6 +113,7 @@ body {
   padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .tarjeta-sistema {
@@ -138,6 +139,69 @@ body {
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-agregar-estudiante:hover {
+  background-color: #219150;
+}
+
+/* BOTONES ADICIONALES DE GESTIÓN */
+.contenedor-acciones-extra {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-accion {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.btn-accion:hover {
+  opacity: 0.9;
+}
+
+.btn-pasar {
+  background-color: #8e44ad;
+}
+
+.btn-cambiar {
+  background-color: #d35400;
+}
+
+/* BUSCADOR DE ESTUDIANTES */
+.contenedor-buscador {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f9f9f9;
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+
+.lbl-buscar {
+  font-weight: bold;
+  font-size: 14px;
+  color: #1e3c72;
+}
+
+#input-buscar {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
 }
 
 .encabezado-tabla {
@@ -155,6 +219,11 @@ body {
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-imprimir:hover {
+  background-color: #1f6391;
 }
 
 .contenedor-tabla {
@@ -179,6 +248,15 @@ body {
   white-space: nowrap;
 }
 
+.input-cedula-edit {
+  width: 100px;
+  padding: 4px 6px;
+  border: 1px solid #3498db;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 13px;
+}
+
 .btn-eliminar {
   background-color: #c0392b;
   color: white;
@@ -186,6 +264,17 @@ body {
   padding: 5px 10px;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 12px;
+}
+
+.btn-eliminar:hover {
+  background-color: #a93226;
+}
+
+.sin-resultados {
+  font-weight: bold;
+  color: #c0392b;
+  padding: 15px !important;
 }
 
 /* ==========================================================================
@@ -202,7 +291,8 @@ body {
   #pantalla-registro,
   .btn-imprimir,
   .col-acciones,
-  .btn-eliminar {
+  .btn-eliminar,
+  .contenedor-buscador {
     display: none !important;
   }
 
@@ -228,6 +318,11 @@ body {
     padding: 3px !important;
     font-size: 7pt !important;
     color: #000000 !important;
+  }
+
+  .input-cedula-edit {
+    border: none !important;
+    background: transparent !important;
   }
 
   * {

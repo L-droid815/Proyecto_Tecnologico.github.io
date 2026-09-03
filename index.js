@@ -136,14 +136,14 @@ const estudiantesIniciales = [
   { id: 132, cedula: "V-11221082784", nombre: "Sebastian Jose Moreno Mendoza", seccion: "Tercer año seccion U" }
 ];
 
-// Cargar desde localStorage o usar arreglo base si no hay datos guardados
+// Cargar datos del localStorage
 let estudiantes = JSON.parse(localStorage.getItem('registroEstudiantes')) || estudiantesIniciales;
 
 function guardarDatos() {
   localStorage.setItem('registroEstudiantes', JSON.stringify(estudiantes));
 }
 
-// Credenciales por defecto
+// Credenciales
 const USUARIO_CORRECTO = "admin";
 const PASSWORD_CORRECTO = "ColegioSimonBolivar";
 
@@ -151,8 +151,6 @@ const PASSWORD_CORRECTO = "ColegioSimonBolivar";
 // INICIALIZACIÓN
 // ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
-  
-  // Elementos DOM
   const pantallaLogin = document.getElementById("pantalla-login");
   const sistemaPrincipal = document.getElementById("sistema-principal");
   const loginForm = document.getElementById("login-form");
@@ -160,6 +158,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnLogout = document.getElementById("btn-logout");
   const registroForm = document.getElementById("registro-estudiante-form");
   const btnImprimir = document.getElementById("btn-imprimir-main");
+  const inputBuscar = document.getElementById("input-buscar");
+  const btnPasarAno = document.getElementById("btn-pasar-ano");
+  const btnCambiarSeccion = document.getElementById("btn-cambiar-seccion");
 
   // 1. MANEJO DE LOGIN
   loginForm.addEventListener("submit", (e) => {
@@ -202,26 +203,136 @@ document.addEventListener("DOMContentLoaded", () => {
     estudiantes.push(nuevoEstudiante);
     guardarDatos();
     registroForm.reset();
-    renderizarTabla();
+    renderizarTabla(inputBuscar.value);
   });
 
-  // 4. BINDING IMPRESIÓN
+  // 4. BUSCADOR EN TIEMPO REAL
+  inputBuscar.addEventListener("input", () => {
+    renderizarTabla(inputBuscar.value);
+  });
+
+  // 5. ACCIÓN: PASAR DE AÑO POR SECCIÓN
+  btnPasarAno.addEventListener("click", () => {
+    const secciones = [...new Set(estudiantes.map(e => e.seccion))];
+    if (secciones.length === 0) {
+      alert("No hay secciones registradas actualmente.");
+      return;
+    }
+
+    const seccionElegida = prompt(`¿De cuál sección desea pasar estudiantes de año?\nSecciones disponibles:\n- ${secciones.join("\n- ")}`);
+    if (!seccionElegida) return;
+
+    const listaSeccion = estudiantes.filter(e => e.seccion.toLowerCase() === seccionElegida.trim().toLowerCase());
+    if (listaSeccion.length === 0) {
+      alert("No se encontraron estudiantes en la sección especificada.");
+      return;
+    }
+
+    const nuevoAnoGlobal = prompt(`Ingrese el NUEVO AÑO / CURSO para los estudiantes seleccionados (Ej. Segundo año seccion A):`);
+    if (!nuevoAnoGlobal) return;
+
+    let modificados = 0;
+    listaSeccion.forEach(est => {
+      const resp = confirm(`¿Desea pasar de año al estudiante?\n\nNombre: ${est.nombre}\nCédula: ${est.cedula}`);
+      if (resp) {
+        const nombre = prompt("Confirmar/Editar Nombre:", est.nombre.split(" ")[0] || "") || est.nombre;
+        const apellido = prompt("Confirmar/Editar Apellido:", est.nombre.split(" ").slice(1).join(" ") || "") || "";
+        const cedula = prompt("Confirmar/Editar Cédula:", est.cedula) || est.cedula;
+        const genero = prompt("Ingrese Género (M/F o Masculino/Femenino):", "M/F") || "";
+
+        est.nombre = `${nombre} ${apellido}`.trim();
+        est.cedula = cedula;
+        est.genero = genero;
+        est.seccion = nuevoAnoGlobal;
+        modificados++;
+      }
+    });
+
+    if (modificados > 0) {
+      guardarDatos();
+      renderizarTabla(inputBuscar.value);
+      alert(`Se han pasado de año ${modificados} estudiante(s) a: ${nuevoAnoGlobal}`);
+    }
+  });
+
+  // 6. ACCIÓN: CAMBIAR DE SECCIÓN
+  btnCambiarSeccion.addEventListener("click", () => {
+    const secciones = [...new Set(estudiantes.map(e => e.seccion))];
+    if (secciones.length === 0) {
+      alert("No hay secciones registradas.");
+      return;
+    }
+
+    const seccionOrigen = prompt(`¿En qué sección se encuentra el estudiante?\nSecciones disponibles:\n- ${secciones.join("\n- ")}`);
+    if (!seccionOrigen) return;
+
+    const listaSeccion = estudiantes.filter(e => e.seccion.toLowerCase() === seccionOrigen.trim().toLowerCase());
+    if (listaSeccion.length === 0) {
+      alert("No existen estudiantes en esa sección.");
+      return;
+    }
+
+    let textoLista = "Seleccione solicitando los datos del estudiante:\n";
+    listaSeccion.forEach((e, idx) => {
+      textoLista += `${idx + 1}. ${e.nombre} (${e.cedula})\n`;
+    });
+
+    alert(textoLista);
+
+    let modificados = 0;
+    listaSeccion.forEach(est => {
+      const cambiar = confirm(`¿Desea cambiar de sección al estudiante?\n\nNombre: ${est.nombre}\nCédula: ${est.cedula}`);
+      if (cambiar) {
+        const nombre = prompt("Nombre:", est.nombre.split(" ")[0] || "") || est.nombre;
+        const apellido = prompt("Apellido:", est.nombre.split(" ").slice(1).join(" ") || "") || "";
+        const cedula = prompt("Número de Cédula:", est.cedula) || est.cedula;
+        const genero = prompt("Género (Masculino / Femenino):", "M/F") || "";
+        const nuevaSeccion = prompt("Nueva Sección a la cual será asignado:", est.seccion) || est.seccion;
+
+        est.nombre = `${nombre} ${apellido}`.trim();
+        est.cedula = cedula;
+        est.genero = genero;
+        est.seccion = nuevaSeccion;
+        modificados++;
+      }
+    });
+
+    if (modificados > 0) {
+      guardarDatos();
+      renderizarTabla(inputBuscar.value);
+      alert(`Se cambió la sección a ${modificados} estudiante(s).`);
+    }
+  });
+
+  // 7. BINDING IMPRESIÓN
   btnImprimir.addEventListener("click", () => {
     window.print();
   });
 });
 
 // ==========================================================================
-// RENDERS
+// RENDERS Y EDICIÓN DE CÉDULA
 // ==========================================================================
-function renderizarTabla() {
+function renderizarTabla(filtro = "") {
   const tbody = document.getElementById("tabla-cuerpo");
   tbody.innerHTML = "";
 
-  estudiantes.forEach((est, index) => {
+  const busqueda = filtro.toLowerCase().trim();
+  const estudiantesFiltrados = estudiantes.filter(est => 
+    est.nombre.toLowerCase().includes(busqueda) || 
+    est.cedula.toLowerCase().includes(busqueda)
+  );
+
+  if (estudiantesFiltrados.length === 0) {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td colspan="17" class="sin-resultados">estudiante no encontrado</td>`;
+    tbody.appendChild(tr);
+    return;
+  }
+
+  estudiantesFiltrados.forEach((est, index) => {
     const tr = document.createElement("tr");
 
-    // Generar checkboxes para las 12 semanas
     let semanasHTML = "";
     for (let i = 1; i <= 12; i++) {
       semanasHTML += `<td><input type="checkbox"></td>`;
@@ -229,7 +340,9 @@ function renderizarTabla() {
 
     tr.innerHTML = `
       <td>${index + 1}</td>
-      <td>${est.cedula}</td>
+      <td>
+        <input type="text" class="input-cedula-edit" value="${est.cedula}" onchange="actualizarCedula(${est.id}, this.value)">
+      </td>
       <td>${est.nombre}</td>
       <td>${est.seccion}</td>
       ${semanasHTML}
@@ -241,3 +354,22 @@ function renderizarTabla() {
     tbody.appendChild(tr);
   });
 }
+
+// EDITAR CÉDULA DIRECTAMENTE EN TABLA
+window.actualizarCedula = function(id, nuevaCedula) {
+  const estudiante = estudiantes.find(e => e.id === id);
+  if (estudiante) {
+    estudiante.cedula = nuevaCedula.trim();
+    guardarDatos();
+  }
+};
+
+// ELIMINAR ESTUDIANTE
+window.eliminarEstudiante = function(id) {
+  if (confirm("¿Está seguro de eliminar este estudiante del registro?")) {
+    estudiantes = estudiantes.filter(e => e.id !== id);
+    guardarDatos();
+    const filtroActual = document.getElementById("input-buscar").value;
+    renderizarTabla(filtroActual);
+  }
+};

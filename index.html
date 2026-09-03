@@ -8,9 +8,6 @@
 </head>
 <body>
 
-  <!-- =================================================================== -->
-  <!-- 1. PANTALLA DE LOGIN DE INICIO                                       -->
-  <!-- =================================================================== -->
   <div id="pantalla-login" class="contenedor-login">
     <form id="login-form" class="tarjeta-login">
       <h2>Iniciar Sesión</h2>
@@ -33,18 +30,13 @@
   </div>
 
 
-  <!-- =================================================================== -->
-  <!-- 2. SISTEMA PRINCIPAL (OCULTO HASTA INICIAR SESIÓN)                 -->
-  <!-- =================================================================== -->
   <div id="sistema-principal" class="oculto">
     
-    <!-- BARRA SUPERIOR CON BOTÓN DE CERRAR SESIÓN -->
     <header class="barra-superior">
       <h1>Panel de Control - Asistencia</h1>
       <button id="btn-logout" class="btn-logout">Cerrar Sesión</button>
     </header>
 
-    <!-- FORMULARIO DE REGISTRO DE ESTUDIANTES -->
     <section id="pantalla-registro" class="tarjeta-sistema">
       <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
         <h2>Registro de Estudiante</h2>
@@ -62,66 +54,54 @@
           </div>
           <div class="grupo-input">
             <label for="seccion">Sección / Curso</label>
-            <input type="text" id="seccion" required placeholder="Ej. Sección A">
+            <input type="text" id="seccion" required placeholder="Ej. Primer año seccion A">
           </div>
         </div>
         <button type="submit" class="btn-agregar-estudiante">+ Agregar Estudiante</button>
       </form>
+
+      <div class="contenedor-acciones-extra">
+        <button id="btn-pasar-ano" class="btn-accion btn-pasar">🎓 Pasar de Año</button>
+        <button id="btn-cambiar-seccion" class="btn-accion btn-cambiar">🔄 Cambiar de Sección</button>
+      </div>
     </section>
 
-    <!-- SECCIÓN DE LISTAS DE ASISTENCIA -->
     <section class="seccion-asistencia tarjeta-sistema">
       <div class="encabezado-tabla">
         <h2>Listado Oficial de Asistencia</h2>
         <button id="btn-imprimir-main" class="btn-imprimir">🖨️ Imprimir a Office / PDF</button>
       </div>
 
-      <!-- TABLA DE ASISTENCIA -->
-      <div class="contenedor-tabla" style="overflow-x: auto;">
+      <div class="contenedor-buscador">
+        <label for="input-buscar" class="lbl-buscar">🔍 Buscar Estudiante:</label>
+        <input type="text" id="input-buscar" placeholder="Ingrese nombre o cédula para buscar...">
+      </div>
+
+      <div class="contenedor-tabla">
         <table class="tabla-asistencia">
           <thead>
             <tr>
               <th>#</th>
-
               <th>Cédula / ID</th>
-
               <th>Nombre y Apellido</th>
-
               <th>Sección</th>
-
               <th>Sem 1</th>
-
               <th>Sem 2</th>
-
               <th>Sem 3</th>
-
               <th>Sem 4</th>
-
               <th>Sem 5</th>
-
               <th>Sem 6</th>
-
               <th>Sem 7</th>
-
               <th>Sem 8</th>
-
               <th>Sem 9</th>
-
               <th>Sem 10</th>
-
               <th>Sem 11</th>
-
               <th>Sem 12</th>
-
-              <!--Esta es la parte del justificativo de porque no fue
-                  a clases-->
-
-              <th class="col-acciones">Justificativo</th>
+              <th class="col-acciones">Acciones</th>
             </tr>
           </thead>
           <tbody id="tabla-cuerpo">
-            <!-- Los registros se cargan dinámicamente vía JavaScript -->
-          </tbody>
+            </tbody>
         </table>
       </div>
     </section>
